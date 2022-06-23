@@ -22,10 +22,11 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private _auth: AuthService, private _cart: CartService) {
     this._auth.user.subscribe((user) => {
-      if (user) {
+      if (user) { 
         this.currentUser = user;
         this.billingAddress[0].value = user.full_name;
         this.billingAddress[1].value = user.email;
+        console.log('iduser', user.user_id);
         
       }
     });
@@ -38,12 +39,15 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {}
 
   submitCheckout() {
-    console.log(this.cartData + "datt");
+    console.log(this.billingAddress, "billing");
+    console.log(this.currentUser.user_id, 'idddd');
     
-    this.loading = true;
+    // console.dir(this.cartData )
+    
+    this.loading = true; 
     setTimeout(() => {
       this._cart
-        .submitCheckout(this.currentUser.user_id, this.cartData)
+        .submitCheckout(this.currentUser.user_id, this.cartData, this.billingAddress)
         .subscribe(
           (res: any) => {
             console.log(res);

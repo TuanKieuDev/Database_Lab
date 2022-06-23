@@ -5,8 +5,8 @@ const {
 } = require("../services/orderService");
 
 exports.create_order = async (req, res, next) => {
-  const { userId, cart } = req.body;
-  createOrder({ userId, cart })
+  const { userId, cart, billing } = req.body;
+  createOrder({ userId, cart, billing })
     .then((result) => {
       res.status(result.statusCode).send({ ...result });
     })

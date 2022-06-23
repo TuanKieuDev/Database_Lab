@@ -1,7 +1,8 @@
 const db = require("../database/db");
 
 exports.createOrder = async (params) => {
-  const { userId, cart } = params;
+  const { userId, cart, billing } = params;
+  console.log('userrrrrrrrr', userId);
 
   if (!cart) throw { message: "cart was not provided", statusCode: 400 };
   if (!userId) throw { message: "userId was not provided", statusCode: 400 };
@@ -49,6 +50,16 @@ exports.createOrder = async (params) => {
               }
             );
           });
+
+          //address
+          db.query(
+            `INSERT INTO addresses (full_name, email, address, city, country, zip, telephone, order_id) VALUES (?,?,?,?,?,?,?,?)`,
+            [billing[0].value, billing[1].value, billing[2].value, billing[3].value, billing[4].value, billing[5].value, billing[6].value, newOrderId],
+            (err, result) => {
+              if (err) reject({ message: err, statusCode: 500 });
+              console.log(result);
+            }
+          )
 
           resolve({
             message: `Order was successfully placed with order id ${newOrderId}`,
