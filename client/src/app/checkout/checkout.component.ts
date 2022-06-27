@@ -22,6 +22,9 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private _auth: AuthService, private _cart: CartService) {
     this._auth.user.subscribe((user) => {
+      if (typeof user.user_id != 'number') {
+        location.reload()
+      }
       if (user) { 
         this.currentUser = user;
         this.billingAddress[0].value = user.full_name;

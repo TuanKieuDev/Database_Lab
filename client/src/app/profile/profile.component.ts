@@ -16,12 +16,12 @@ export class ProfileComponent implements OnInit {
       value: '',
       type: 'text',
     },
-    {
-      key: 'email',
-      label: 'Email address',
-      value: '',
-      type: 'email',
-    },
+    // {
+    //   key: 'email',
+    //   label: 'Email address',
+    //   value: '',
+    //   type: 'email',
+    // },
     {
       key: 'password',
       label: 'Password',
@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
   }
 
   canUpdate(): boolean {
-    return this.user.filter((field) => field.value.length > 0).length !== 4
+    return this.user.filter((field) => field.value.length > 0).length !== 3
       ? true
       : false;
   }
