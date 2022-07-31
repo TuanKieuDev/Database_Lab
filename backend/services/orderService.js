@@ -53,8 +53,8 @@ exports.createOrder = async (params) => {
 
           //address
           db.query(
-            `INSERT INTO addresses (full_name, email, address, city, country, zip, telephone, order_id) VALUES (?,?,?,?,?,?,?,?)`,
-            [billing[0].value, billing[1].value, billing[2].value, billing[3].value, billing[4].value, billing[5].value, billing[6].value, newOrderId],
+            `INSERT INTO addresses (full_name, address, city, country, zip, telephone, order_id) VALUES (?,?,?,?,?,?,?)`,
+            [billing[0].value, billing[1].value, billing[2].value, billing[3].value, billing[4].value, billing[5].value, newOrderId],
             (err, result) => {
               if (err) reject({ message: err, statusCode: 500 });
               console.log(result);

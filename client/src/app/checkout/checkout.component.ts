@@ -28,7 +28,7 @@ export class CheckoutComponent implements OnInit {
       if (user) { 
         this.currentUser = user;
         this.billingAddress[0].value = user.full_name;
-        this.billingAddress[1].value = user.email;
+        //this.billingAddress[1].value = user.email;
         console.log('iduser', user.user_id);
         
       }
@@ -78,7 +78,7 @@ export class CheckoutComponent implements OnInit {
 
   canBillingSubmit(): boolean {
     return this.billingAddress.filter((field) => field.value.length > 0)
-      .length !== 7
+      .length !== 6
       ? true
       : false;
   }
@@ -112,12 +112,12 @@ export class CheckoutComponent implements OnInit {
       type: 'text',
       value: '',
     },
-    {
-      name: 'Email',
-      placeholder: 'Enter your email address',
-      type: 'email',
-      value: '',
-    },
+    // {
+    //   name: 'Email',
+    //   placeholder: 'Enter your email address',
+    //   type: 'email',
+    //   value: '',
+    // },
     {
       name: 'Address',
       placeholder: 'Enter your address',
